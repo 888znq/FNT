@@ -9,16 +9,16 @@
             @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
     
             /* Reset and edge-to-edge styling */
-            body, html {
-                margin: 0;
-                padding: 0;
-                height: 100%;
-                width: 100%;
-                font-family: 'Roboto Mono', monospace; /* Emergency/Terminal vibe */
-                background-color: #000000; /* Pure black background */
-                overflow: hidden; 
-                touch-action: none;
-            }
+                    body, html {
+                        margin: 0;
+                        padding: 0;
+                        height: 100%;
+                        width: 100%;
+                        font-family: 'Roboto Mono', monospace; 
+                        background-color: #2b2d36; /* Dark slate for maximum neumorphic pop */
+                        overflow: hidden; 
+                        touch-action: none;
+                    }
     
             .app-container {
                 display: flex;
@@ -28,86 +28,131 @@
             }
     
             /* Top 70% Note Area */
-            textarea.note-area {
-                flex: 7; 
-                padding: 24px;
-                box-sizing: border-box;
-                font-size: 1.6rem;
-                font-weight: bold;
-                line-height: 1.6;
-                color: #ff0000; /* Red text */
-                background: #000000; /* Black background */
-                border: none;
-                border-bottom: 2px solid #ff0000; /* Red border */
-                resize: none;
-                outline: none;
-                font-family: inherit;
-                caret-color: #ff0000; /* Native red blinking cursor */
-            }
-    
-            textarea.note-area::placeholder {
-                color: #770000; /* Darker red for placeholder */
-            }
+                    .notes-list {
+                        flex: 7; 
+                        padding: 24px;
+                        box-sizing: border-box;
+                        background: #2b2d36;
+                        overflow-y: auto;
+                        border-bottom: 2px solid #1a1c23; /* Subtle dark divider */
+                        display: flex;
+                        flex-direction: column;
+                        gap: 20px;
+                    }
+            
+                    .note-row {
+                        display: flex;
+                        align-items: flex-start;
+                        gap: 16px;
+                        /* Neumorphic inset well for the text area */
+                        background: #2b2d36;
+                        padding: 12px;
+                        border-radius: 12px;
+                        box-shadow: inset 4px 4px 8px rgba(0,0,0,0.4), inset -4px -4px 8px rgba(255,255,255,0.05);
+                    }
+            
+                    .note-input {
+                        flex: 1;
+                        background: transparent;
+                        color: #ff4444; /* Bright red text */
+                        border: none;
+                        outline: none;
+                        font-family: inherit;
+                        font-size: 1.6rem;
+                        font-weight: bold;
+                        line-height: 1.4;
+                        resize: none;
+                        caret-color: #ff4444;
+                        min-height: 2.2rem;
+                        overflow: hidden; 
+                    }
+            
+                    .note-input::placeholder {
+                        color: #662222; /* Dark red placeholder */
+                    }
+            
+                    /* Neumorphic Delete Button */
+                    .note-del-btn {
+                        background: #2b2d36;
+                        color: #ff4444;
+                        border: none;
+                        border-radius: 8px;
+                        cursor: pointer;
+                        font-family: inherit;
+                        font-weight: bold;
+                        padding: 8px 12px;
+                        font-size: 1.2rem;
+                        box-shadow: 3px 3px 6px rgba(0,0,0,0.4), -3px -3px 6px rgba(255,255,255,0.06);
+                        flex-shrink: 0;
+                        transition: all 0.1s ease-in-out;
+                    }
+                    .note-del-btn:active {
+                        color: #ff1111;
+                        box-shadow: inset 3px 3px 6px rgba(0,0,0,0.4), inset -3px -3px 6px rgba(255,255,255,0.06);
+                    }
     
             /* Bottom 30% Keyboard Area */
-            .keyboard {
-                flex: 3; 
-                background: #000000; /* Black keyboard background */
-                display: flex;
-                flex-direction: column;
-                padding: 6px;
-                box-sizing: border-box;
-                gap: 6px;
-                justify-content: center;
-            }
-    
-            .keyboard-row {
-                display: flex;
-                justify-content: center;
-                flex: 1;
-                gap: 6px;
-            }
-    
-            .key {
+                    .keyboard {
+                        flex: 3; 
+                        background: #2b2d36; 
+                        display: flex;
+                        flex-direction: column;
+                        padding: 12px; 
+                        box-sizing: border-box;
+                        gap: 12px;
+                        justify-content: center;
+                    }
+            
+                    .keyboard-row {
+                        display: flex;
+                        justify-content: center;
                         flex: 1;
-                        background: #000000; /* Black keys */
-                        color: #ff0000; /* Red text */
-                        border: 1px solid #ff0000; /* Red borders for visibility */
-                        border-radius: 6px;
+                        gap: 12px;
+                    }
+            
+                    .key {
+                        flex: 1;
+                        background: #2b2d36; 
+                        color: #ff4444; 
+                        border: none; 
+                        border-radius: 10px; 
                         font-size: 1.3rem;
                         font-weight: bold;
                         cursor: pointer;
-                        box-shadow: 0 0 5px rgba(255, 0, 0, 0.3); /* Subtle red glow */
+                        /* Strong Neumorphic 3D Pop Out Effect */
+                        box-shadow: 
+                            -4px -4px 8px rgba(255, 255, 255, 0.06), /* White highlight */
+                            4px 4px 8px rgba(0, 0, 0, 0.5);          /* Black drop shadow */
                         user-select: none;
                         -webkit-tap-highlight-color: transparent;
-                        transition: all 0.1s;
+                        transition: all 0.1s ease-in-out;
                         font-family: 'Roboto Mono', monospace;
                     }
-    
-            .key:active {
-                background: #ff0000; /* Solid red when pressed */
-                color: #000000; /* Black text when pressed */
-                box-shadow: 0 0 15px rgba(255, 0, 0, 0.8); /* Intense glow on press */
-            }
-    
-            /* Special key sizings */
-            .key.wide {
-                flex: 1.5;
-                background: #110000; /* Very slightly tinted dark red for wide keys */
-            }
-            .key.space {
-                flex: 5;
-            }
+            
+                    .key:active {
+                        background: #2b2d36; 
+                        color: #ff1111; 
+                        /* Pressing the key IN */
+                        box-shadow: 
+                            inset 4px 4px 8px rgba(0, 0, 0, 0.5),       
+                            inset -4px -4px 8px rgba(255, 255, 255, 0.06); 
+                    }
+            
+                    /* Special key sizings */
+                    .key.wide {
+                        flex: 1.5;
+                        /* Removed bg override so it blends perfectly with the neomorph board */
+                    }
+                    .key.space {
+                        flex: 5;
+                    }
         </style>
 </head>
 <body>
 
     <div class="app-container">
-            <!-- Display area for notes (with floating delete button) -->
-            <div style="flex: 7; display: flex; flex-direction: column; position: relative;">
-                <button id="delete-btn" style="position: absolute; top: 16px; right: 24px; background: #000000; color: #ff0000; border: 1px solid #ff0000; padding: 6px 12px; font-family: 'Roboto Mono', monospace; font-weight: bold; cursor: pointer; border-radius: 4px; box-shadow: 0 0 5px rgba(255, 0, 0, 0.3); z-index: 10;">⌫ DELETE</button>
-                <textarea id="note-area" class="note-area" style="flex: 1; width: 100%; height: 100%;" inputmode="none" placeholder="Tap anywhere to start typing..."></textarea>
-            </div>
+            <!-- Display area for individual notes -->
+            <div id="notes-list" class="notes-list"></div>
             
             <!-- Always-on virtual keyboard -->
             <div class="keyboard" id="keyboard"></div>
@@ -127,13 +172,88 @@
                             appId: "1:718302899022:web:f1675dbcc293e138c68c1f"
                         };
                         const app = initializeApp(firebaseConfig);
-                        const db = getDatabase(app);
-                        const noteRef = ref(db, 'terminalKeyboardApp/note');
-                
-                        const noteArea = document.getElementById('note-area');
-                        const deleteBtn = document.getElementById('delete-btn');
-                        let isShift = false;
-                    let isSymbols = false;
+                                            const db = getDatabase(app);
+                                            const noteRef = ref(db, 'terminalKeyboardApp/notesList'); // Changed to Array structure
+                                    
+                                            const notesListElement = document.getElementById('notes-list');
+                                            let activeInput = null;
+                                            let notesData = [""]; // Array of notes
+                                            
+                                            let isShift = false;
+                                            let isSymbols = false;
+                        
+                                            // Function to render the list of notes
+                                            function renderNotes() {
+                                                notesListElement.innerHTML = '';
+                                                if (!notesData || notesData.length === 0) notesData = [""];
+                                                
+                                                notesData.forEach((text, index) => {
+                                                    const row = document.createElement('div');
+                                                    row.className = 'note-row';
+                                                    
+                                                    const textarea = document.createElement('textarea');
+                                                    textarea.className = 'note-input';
+                                                    textarea.value = text;
+                                                    textarea.rows = 1;
+                                                    textarea.placeholder = "Tap to type note...";
+                                                    textarea.inputMode = "none"; // Hide native keyboard
+                                                    
+                                                    // Auto-grow feature
+                                                    const adjustHeight = () => {
+                                                        textarea.style.height = 'auto';
+                                                        textarea.style.height = (textarea.scrollHeight) + 'px';
+                                                    };
+                                                    setTimeout(adjustHeight, 0); // initial adjustment
+                                                    
+                                                    textarea.addEventListener('input', () => {
+                                                        adjustHeight();
+                                                        notesData[index] = textarea.value;
+                                                        set(noteRef, { notes: notesData });
+                                                    });
+                        
+                                                    textarea.addEventListener('focus', () => {
+                                                        activeInput = textarea;
+                                                    });
+                                                    
+                                                    const delBtn = document.createElement('button');
+                                                    delBtn.className = 'note-del-btn';
+                                                    delBtn.textContent = '⌫';
+                                                    delBtn.addEventListener('pointerdown', (e) => {
+                                                        e.preventDefault();
+                                                        notesData.splice(index, 1);
+                                                        if(notesData.length === 0) notesData = [""];
+                                                        set(noteRef, { notes: notesData });
+                                                        renderNotes(); // Re-render to update index mappings
+                                                    });
+                                                    
+                                                    row.appendChild(textarea);
+                                                    row.appendChild(delBtn);
+                                                    notesListElement.appendChild(row);
+                                                });
+                                                
+                                                // Set active input to the last one if none is focused
+                                                if (!activeInput || !notesListElement.contains(activeInput)) {
+                                                    const inputs = document.querySelectorAll('.note-input');
+                                                    activeInput = inputs[inputs.length - 1];
+                                                }
+                                            }
+                        
+                                            renderNotes(); // Initial render locally
+                        
+                                            // Keep notes alive with remote Firebase changes
+                                            onValue(noteRef, (snapshot) => {
+                                                const data = snapshot.val();
+                                                if (data && Array.isArray(data.notes)) {
+                                                    // Only re-render if the content actually changed to prevent cursor jumps
+                                                    if (JSON.stringify(notesData) !== JSON.stringify(data.notes)) {
+                                                        notesData = data.notes;
+                                                        renderNotes();
+                                                    }
+                                                } else if (!data) {
+                                                    notesData = [""];
+                                                    renderNotes();
+                                                }
+                                            });
                     
                     // Primary Letters Layout
                     const layoutLetters = [
@@ -205,68 +325,95 @@
                     renderKeyboard(); // Render the keyboard immediately on load
             
                     // Function to process character input at cursor position
-                    function handleInput(key) {
-                        noteArea.focus(); // Ensure textarea is active
-                        const start = noteArea.selectionStart;
-                        const end = noteArea.selectionEnd;
-                        const val = noteArea.value;
-                        let textToInsert = "";
-            
-                        if (key === 'Bksp') {
-                            if (start === end && start > 0) {
-                                noteArea.value = val.substring(0, start - 1) + val.substring(end);
-                                noteArea.selectionStart = noteArea.selectionEnd = start - 1;
-                            } else if (start !== end) {
-                                noteArea.value = val.substring(0, start) + val.substring(end);
-                                noteArea.selectionStart = noteArea.selectionEnd = start;
-                            }
-                            return; // Skip the insertion step
-                        } else if (key === 'Space') {
-                            textToInsert = " ";
-                        } else if (key === 'Enter') {
-                            textToInsert = "\n";
-                        } else if (key === 'Shift') {
-                            isShift = !isShift;
-                            renderKeyboard(); // Re-render to show uppercase/lowercase keys
-                            return; // Toggle shift and exit
-                        } else if (key === '!#1' || key === 'ABC') {
-                            isSymbols = !isSymbols; // Toggle layout state
-                            if (isSymbols) isShift = false; // Reset shift when opening symbols
-                            renderKeyboard(); // Re-render with new layout
-                            return;
-                        } else {
-                            textToInsert = (isShift && !isSymbols) ? key.toUpperCase() : key;
-                            if (isShift) {
-                                isShift = false; // Auto-turn off shift after one letter
-                                renderKeyboard(); // Re-render back to lowercase
-                            }
-                        }
-            
-                        // Insert exactly at current cursor position
-                                                noteArea.value = val.substring(0, start) + textToInsert + val.substring(end);
-                                                noteArea.selectionStart = noteArea.selectionEnd = start + textToInsert.length;
-                                                
-                                                // Push to Firebase instantly
-                                                set(noteRef, { text: noteArea.value });
+                                        function handleInput(key) {
+                                            if (!activeInput || !notesListElement.contains(activeInput)) {
+                                                const inputs = document.querySelectorAll('.note-input');
+                                                activeInput = inputs[inputs.length - 1];
                                             }
-                                    
-                                            // Delete button logic
-                                            deleteBtn.addEventListener('pointerdown', (e) => {
-                                                e.preventDefault();
-                                                noteArea.value = '';
-                                                set(noteRef, { text: '' });
-                                                noteArea.focus();
-                                            });
-                                    
-                                            // Keep note alive with remote Firebase changes
-                                            onValue(noteRef, (snapshot) => {
-                                                const data = snapshot.val();
-                                                if (data && typeof data.text === 'string') {
-                                                    if (noteArea.value !== data.text) {
-                                                        noteArea.value = data.text;
-                                                    }
+                                            if (!activeInput) return;
+                                            
+                                            activeInput.focus(); // Ensure textarea is active
+                                            const start = activeInput.selectionStart;
+                                            const end = activeInput.selectionEnd;
+                                            const val = activeInput.value;
+                                            let textToInsert = "";
+                                
+                                            if (key === 'Bksp') {
+                                                if (start === end && start > 0) {
+                                                    activeInput.value = val.substring(0, start - 1) + val.substring(end);
+                                                    activeInput.selectionStart = activeInput.selectionEnd = start - 1;
+                                                } else if (start !== end) {
+                                                    activeInput.value = val.substring(0, start) + val.substring(end);
+                                                    activeInput.selectionStart = activeInput.selectionEnd = start;
+                                                } else if (start === 0 && notesData.length > 1 && val === "") {
+                                                    // If backspace on an empty line, delete the whole line automatically!
+                                                    const index = Array.from(notesListElement.children).indexOf(activeInput.parentElement);
+                                                    notesData.splice(index, 1);
+                                                    set(noteRef, { notes: notesData });
+                                                    renderNotes();
+                                                    
+                                                    // Focus the previous note
+                                                    const inputs = document.querySelectorAll('.note-input');
+                                                    activeInput = inputs[Math.max(0, index - 1)];
+                                                    activeInput.focus();
+                                                    activeInput.selectionStart = activeInput.selectionEnd = activeInput.value.length; // Move cursor to end
                                                 }
-                                            });
-                                        </script>
+                                                
+                                                // Trigger resize
+                                                activeInput.style.height = 'auto';
+                                                activeInput.style.height = (activeInput.scrollHeight) + 'px';
+                                                
+                                                // Save
+                                                const idx = Array.from(notesListElement.children).indexOf(activeInput.parentElement);
+                                                if (idx >= 0) {
+                                                    notesData[idx] = activeInput.value;
+                                                    set(noteRef, { notes: notesData });
+                                                }
+                                                return; // Skip the insertion step
+                                            } else if (key === 'Space') {
+                                                textToInsert = " ";
+                                            } else if (key === 'Enter') {
+                                                // Create a new note line!
+                                                const index = Array.from(notesListElement.children).indexOf(activeInput.parentElement);
+                                                notesData.splice(index + 1, 0, "");
+                                                set(noteRef, { notes: notesData });
+                                                renderNotes();
+                                                
+                                                // Focus the new note line
+                                                const inputs = document.querySelectorAll('.note-input');
+                                                activeInput = inputs[index + 1];
+                                                activeInput.focus();
+                                                return; // Skip normal insertion
+                                            } else if (key === 'Shift') {
+                                                isShift = !isShift;
+                                                renderKeyboard(); // Re-render to show uppercase/lowercase keys
+                                                return; // Toggle shift and exit
+                                            } else if (key === '!#1' || key === 'ABC') {
+                                                isSymbols = !isSymbols; // Toggle layout state
+                                                if (isSymbols) isShift = false; // Reset shift when opening symbols
+                                                renderKeyboard(); // Re-render with new layout
+                                                return;
+                                            } else {
+                                                textToInsert = (isShift && !isSymbols) ? key.toUpperCase() : key;
+                                                if (isShift) {
+                                                    isShift = false; // Auto-turn off shift after one letter
+                                                    renderKeyboard(); // Re-render back to lowercase
+                                                }
+                                            }
+                                
+                                            // Insert exactly at current cursor position
+                                            activeInput.value = val.substring(0, start) + textToInsert + val.substring(end);
+                                            activeInput.selectionStart = activeInput.selectionEnd = start + textToInsert.length;
+                                            
+                                            // Trigger resize
+                                            activeInput.style.height = 'auto';
+                                            activeInput.style.height = (activeInput.scrollHeight) + 'px';
+                                            
+                                            // Push to Firebase instantly
+                                            const index = Array.from(notesListElement.children).indexOf(activeInput.parentElement);
+                                            notesData[index] = activeInput.value;
+                                            set(noteRef, { notes: notesData });
+                                        }
+                                    </script>
 </body>
 </html>
