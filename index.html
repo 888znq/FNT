@@ -41,31 +41,43 @@
                     }
             
                     .note-row {
-                        display: flex;
-                        align-items: flex-start;
-                        gap: 16px;
-                        /* Neumorphic inset well for the text area */
-                        background: #2b2d36;
-                        padding: 12px;
-                        border-radius: 12px;
-                        box-shadow: inset 4px 4px 8px rgba(0,0,0,0.4), inset -4px -4px 8px rgba(255,255,255,0.05);
-                    }
-            
-                    .note-input {
-                        flex: 1;
-                        background: transparent;
-                        color: #ff4444; /* Bright red text */
-                        border: none;
-                        outline: none;
-                        font-family: inherit;
-                        font-size: 1.6rem;
-                        font-weight: bold;
-                        line-height: 1.4;
-                        resize: none;
-                        caret-color: #ff4444;
-                        min-height: 2.2rem;
-                        overflow: hidden; 
-                    }
+                                                display: flex;
+                                                align-items: flex-start;
+                                                gap: 16px;
+                                                /* Constant Neumorphic pop-out card for the text area */
+                                                background: #2b2d36;
+                                                padding: 12px;
+                                                border-radius: 12px;
+                                                box-shadow: -4px -4px 8px rgba(255, 255, 255, 0.06), 4px 4px 8px rgba(0, 0, 0, 0.5);
+                                                transition: all 0.1s ease-in-out;
+                                            }
+                                            
+                                            /* Keep it popped out while typing! Just add a subtle red glow to the edges to show it is active */
+                                            .note-row:focus-within {
+                                                box-shadow: -4px -4px 8px rgba(255, 255, 255, 0.06), 4px 4px 8px rgba(0, 0, 0, 0.5), 0 0 10px rgba(255, 68, 68, 0.15);
+                                            }
+                            
+                                    .note-input {
+                                        flex: 1;
+                                        background: transparent;
+                                        color: #ff4444; /* Bright red text */
+                                        border: none;
+                                        outline: none;
+                                        font-family: inherit;
+                                        font-size: 1.6rem;
+                                        font-weight: bold;
+                                        line-height: 1.4;
+                                        resize: none;
+                                        caret-color: #ff4444;
+                                        min-height: 2.2rem;
+                                        overflow: hidden; 
+                                        transition: text-shadow 0.2s;
+                                    }
+                                    
+                                    /* Makes the text itself glow slightly while you are typing */
+                                    .note-input:focus {
+                                        text-shadow: 0 0 8px rgba(255, 68, 68, 0.4);
+                                    }
             
                     .note-input::placeholder {
                         color: #662222; /* Dark red placeholder */
